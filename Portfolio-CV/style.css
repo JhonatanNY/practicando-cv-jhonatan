@@ -1,0 +1,727 @@
+/*********************Custom Properties****************/
+/*La regla :root en CSS se utiliza para seleccionar el elemento raíz del documento, que es el elemento <html>. Se utiliza comúnmente para definir variables CSS personalizadas que pueden ser utilizadas en todo el documento. Las variables definidas dentro de :root están disponibles globalmente en el documento.*/
+:root{
+    --first-color:#d90062;
+    --first-alpha-color:rgba(217,0,98,0.75);
+    --second-color:#14192d;
+    --second-alpha-color:rgba(20,25,45,0.75);
+    --third-color:#501464;
+    --third-alpha-color:rgba(80,20,100,0.75);
+    --white-color:#fff;
+    --gray-light-color:#f3f3f3;
+    --gray-color:#ccc;
+    --gray-dark-color:#666;
+    --black-color:#000;
+    --link-color:#509ee3;
+    --title-color:#333;
+    --text-color:#222;
+    --white-alpha-color:rgba(255,255,255,0.5);
+    --black-alpha-color:rgba(0,0,0,0.5);
+    --font:"Raleway",sans-serif;
+    --max-width:1200px;
+    --header-height:4rem
+}
+
+/*********************Reset****************************/
+html{
+    box-sizing: border-box;
+    font-family: var(--font);
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+*,*::after,*::before{
+    box-sizing: inherit;
+}
+
+body{
+    margin: 0;
+    overflow-x: hidden;
+    color: var(--text-color);
+}
+
+a{
+    color: var(--link-color);
+    transition: all 0.5s ease; /*ease-out iniciará la animación a toda velocidad, luego terminará lentamente.*/
+}
+
+a:hover{
+    opacity: 0.75;
+}
+
+h1{
+    margin: 0;
+    font-size: 2rem;
+}
+h2{
+    margin: 0;
+    font-size: 1.5rem;
+}
+h3{
+    margin: 0;
+    font-size: 1.25rem;
+}
+h4{
+    margin: 0;
+    font-size:1rem
+}
+h5{
+    margin: 0;
+    font-size:0.85rem
+}
+h6{
+    margin: 0;
+    font-size: 0.7rem;
+}
+
+img{
+    width: 100%;
+    height: auto;
+}
+
+p{
+    line-height: 1.6; /*, el valor 1.6 significa que la altura de línea será 1.6 veces la altura de la fuente del párrafo. Esto afectará cómo se espacian verticalmente las líneas de texto dentro del párrafo.*/
+}
+
+/*********************Carousel***********************/
+.carousel{
+    margin: 2rem auto;
+    padding: 2rem 0;
+    max-width: 800px;
+    text-align: center;
+    overflow: hidden;
+    background-color: var(--carousel-bg-color);
+}
+
+.carousel .slides{
+    padding-left: 0;
+    /* 100% por cada slide*/
+    width: 400%;
+    display: flex;
+    list-style: none;
+    transition: transform .5s ease-in-out;
+}
+.carousel .slides .slide{
+    background-color: blueviolet;
+      
+}
+
+.carousel input{
+   
+}
+
+.carousel label{
+    border: medium solid var(--gray-dark-color);
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 0.25rem;
+    width: 0.75rem;
+    height: 0.75rem;
+    
+}
+
+
+#slide-1:checked ~ .slides {
+    transform: translateX(0%);
+}
+#slide-2:checked ~ .slides {
+    transform: translateX(-25%);
+}
+#slide-3:checked ~ .slides {
+    transform: translateX(-50%);
+}
+#slide-4:checked ~ .slides {
+    transform: translateX(-75%);
+}
+
+#slide-1:checked ~ .slides-nav label#dot-1{
+    background-color: var(--gray-dark-color);
+}
+#slide-2:checked ~ .slides-nav label#dot-2{
+    background-color: var(--gray-dark-color);
+}
+#slide-3:checked ~ .slides-nav label#dot-3{
+    background-color: var(--gray-dark-color);
+}
+#slide-4:checked ~ .slides-nav label#dot-4{
+    background-color: var(--gray-dark-color);
+}
+
+/*********************Contact Form***********************/
+
+.contact-form{
+    margin: 2rem auto;
+    padding: 1rem;
+    max-width: 800px;
+}
+
+.contact-form > *{
+    padding: 0.5rem;
+    margin: 1rem auto;
+    display: block;
+    width: 100%;
+}
+
+.contact-form input,.contact-form textarea{
+    font-size: .85rem;
+    font-family: var(--font);
+}
+
+.contact-form input{
+    border: 0;
+    border-bottom: thin solid var(--gray-dark-color);
+    padding-left: 0;
+}
+
+.contact-form textarea{
+   border: thin solid var(--gray-dark-color); 
+   resize: none;
+}
+
+.contact-form input[type="submit"]{
+    margin-top: 0;
+    cursor: pointer;
+    transition: all .5s ease-out;
+}
+
+.contact-form input[type="submit"]:hover{
+    opacity: 0.75;
+}
+
+.contact-form *::placeholder{
+    color: var(--gray-dark-color);
+}
+
+.contact-form-response{
+    padding: 1rem;
+    width: 400px;
+    text-align: center;
+    background-color: var(--white-color);
+}
+
+.contact-form-response svg{
+    margin-top: 2rem;
+    width: 4rem;
+    height: 4rem;
+    fill: var(--first-color);
+}
+
+.modal#gracias:target{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+@media screen and (min-width:1024px) {
+    .contact-form{
+        display: grid;
+        grid-template-columns: repeat(2,1fr) ;
+        column-gap: 1rem;
+    }
+
+    .contact-form input,.contact-form textarea{
+        font-size: 1rem;
+        
+    }
+
+    .contact-form textarea,.contact-form-loader{
+        grid-column: span 2;
+    }
+
+    .contact-form input[type="submit"]{
+       margin-left: 0;
+    }
+}
+
+/*********************HeroImage***********************/
+.hero-image{
+    background-image: var(--hero-image);
+    background-repeat: no-repeat;
+    background-size: cover; /*background-size: cover; en CSS se utiliza para ajustar el tamaño de una imagen de fondo de manera que cubra completamente el área del contenedor, sin perder la proporción original y sin dejar espacios vacíos.*/
+    background-position: center;
+    background-attachment: var(--hero-attachment); /*background-attachment es una propiedad CSS que se utiliza para especificar si una imagen de fondo debe desplazarse con el contenido, permanecer fija en su posición original o desplazarse independientemente del contenido.*/
+}
+
+.hero-image-opacity{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--hero-opacity-color);
+    
+}
+
+.hero-image-title{
+    font-size: 7.5vw;
+    color:var(--hero-text-color)
+}
+
+
+/***********************Menu***************************/
+.menu-btn{
+    outline: 0.5px solid var(--first-color);
+    border: 0;
+    background-color: var(--second-color);
+    cursor: pointer;
+}
+.menu{
+    position: fixed;
+    left: 0;
+    bottom: var(--header-height);
+    width: 100%;
+    background-color: var(--second-color);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;  /*Esto es útil cuando deseas desactivar la interactividad de un elemento y permitir que los eventos del puntero "pasen a través" de ese elemento hacia los elementos subyacentes.*/
+    transition: opacity 0.5s ease;
+}
+
+.menu.is-active{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.menu a{
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: var(--first-color);
+}
+
+.menu a:hover{
+    color: var(--white-color);
+    background-color: var(--first-color);
+  
+}
+.menu-btn svg{
+    fill: var(--first-color);  /*fill: var(--first-color);: Establece el color de relleno (fill) de los elementos <svg> seleccionados utilizando la variable de CSS --first-color.*/
+}
+
+
+@media screen and (min-width: 1024px) {
+    .menu-btn{
+        display: none;
+    }
+
+    .menu{
+        position: static;
+        width: auto;
+        flex-direction: row;
+        pointer-events: auto;
+        opacity: 1;
+    }
+
+    .menu a{
+        padding: 0 1rem;
+    }
+    .menu a:last-child{
+        padding-right: 0;
+    }
+
+    .menu a:hover{
+        background-color: transparent;
+    }
+}
+
+/*************************Modal***************************/
+
+    .modal{
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--black-alpha-color);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 1s;
+    }
+
+    .modal-content{
+        position: relative;
+        background-color:#509ee3
+    }
+
+    .modal-close{
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .modal-close svg{
+        width: 3rem;
+        height: 3rem;
+        fill: var(--first-color);
+    }
+
+    /* .modal#trabajo-1:target{
+        opacity: 1;
+        pointer-events: auto;
+    } */
+
+    .modal[id|="trabajo"]:target{ /*[id|="trabajo"]: Utiliza un selector de atributos que selecciona elementos cuyo atributo id comienza con la cadena "trabajo". El símbolo de barra vertical | en el selector de atributos significa "comienza con". Entonces, seleccionará elementos cuyo id empieza por "trabajo" y puede tener otros caracteres después.*/
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+/*********************ProgressBar************************/
+
+progress{               /*las barras de progreso tienen dos colores en valor de value y de la barra completa*/
+    width: 100%;
+    height: 1rem;
+    background-color: var(--gray-color); /*Establece el estilo para la barra de progreso en general, incluido el fondo.*/
+}
+
+progress::-webkit-progress-bar{
+    background-color: var(--gray-color); /*Establece el estilo del fondo de la barra de progreso en navegadores basados en WebKit (como Google Chrome y Safari).*/
+}
+
+progress::-webkit-progress-value{
+    background-color: var(--gray-dark-color); /*Establece el estilo del valor de la barra de progreso en navegadores basados en WebKit. Este es el color que se utiliza para la parte de la barra de progreso que se llena.*/
+}
+
+progress::-moz-progress-bar{
+    background-color: var(--gray-dark-color);
+}
+
+.progress{
+    margin: 1rem auto;
+}
+
+.progress > p{
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: .85rem;
+}
+
+/*********************Utilities************************/
+
+.avatar{
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+}
+
+.bg-gray-light{
+   background-color: var(--gray-light-color); 
+}
+
+.box-shadow-1{
+    box-shadow: 0.25rem 0.25rem 1rem rgba(0,0,0,0.25);
+}
+
+.btn{
+    border-radius: .5rem;
+    padding: 1rem;
+    display: inline-block;
+    width: 200px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: var(--white-color);
+    background-color: var(--first-color);
+}
+
+.container{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--max-width);
+}
+
+.gray-scale{
+    filter: grayscale(1);   /*La propiedad filter en CSS se utiliza para aplicar efectos visuales a un elemento, y grayscale(1) es un valor específico de filter que convierte la imagen o elemento a escala de grises. El valor 1 indica que se debe aplicar la máxima cantidad de escala de grises.*/
+}
+
+.none{
+    display: none;
+}
+
+.section{
+    padding: 2rem 1rem;
+}
+
+.section-title{
+    border-top: thin solid var(--first-color);
+    border-bottom: thin solid var(--first-color);
+    margin: 2rem auto;
+    padding: .5rem 1rem;
+    width: 250px;
+    text-align: center;
+    color: var(--title-color);
+}
+
+.text-first-color{
+    color: var(--first-color);
+}
+
+.text-center{
+    text-align: center;
+}
+
+.text-left{
+    text-align: left;
+}
+
+.text-right{
+    text-align: right;
+}
+
+@media screen and (min-width:1024px){
+    .full-lg-screen{
+        width: 100%;
+        min-height: 100vh;
+    }
+    .text-lg-center{
+        text-align: center;
+    }
+
+    .text-lg-left{
+        text-align: left;
+    }
+
+    .text-lg-right{
+        text-align: right;
+    }
+}
+
+
+/*********************Site Styles**********************/
+.about > article{
+    margin-bottom: 2rem;
+}
+
+.contact-card{
+    margin: 1rem auto;
+    padding: 1rem;
+    width: 100%;
+    height: 144px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.contact-card > svg {
+    width: 3rem;
+    height: 3rem;
+    fill: var(--first-color);
+}
+
+.contact-card > small{
+    margin-top: -1rem;
+}
+
+.footer{
+    margin-bottom: var(--header-height);
+    text-align: center;
+    padding: .5rem;
+    color: var(--white-color);
+    background-color: var(--third-color);
+}
+
+.header{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+    width: 100%;
+    height: var(--header-height);
+    background-color: var(--second-color);
+    padding: 1rem;
+}
+
+.header > .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a{
+    color: var(--first-color);
+    font-weight: bold;
+    font-size: 2rem;
+    text-decoration: none;
+}
+
+.portfolio-card{
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+.portfolio-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /*asegura que la imagen se ajuste al tamaño del contenedor sin distorsionar su relación de aspecto, y cualquier exceso se corta para que la imagen cubra completamente el contenedor.*/
+}
+.service-card{
+    margin: 1rem auto;
+    padding: 1rem;
+    text-align: center;
+}
+
+.portfolio-card-info{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    background-color: var(--first-alpha-color);
+    color: var(--white-color);
+    opacity: 0;
+    pointer-events: none;
+    transition: all .5s ease-in-out;
+}
+
+.portfolio-card:hover .portfolio-card-info{   /*Cuando el cursor pasa sobre el elemento .portfolio-card, se aplicará la regla de estilo que afecta a elementos con la clase .portfolio-card-info dentro de ese elemento en estado de hover.*/
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.portfolio-card-info > div{
+    padding: 1rem;
+    border: thin solid var(--white-color);
+    width: inherit;
+    height: inherit;
+}
+
+.portfolio-modal{
+    padding: 1rem;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white-color);
+}
+
+.portfolio-modal h3{
+    border-bottom: medium solid var(--first-color);
+    margin: 1rem auto;
+    padding: .5rem 0;
+    color: var(--title-color);
+}
+
+.portfolio-details{
+    display: grid;
+    grid-template-columns: 40% 60%; 
+    grid-auto-rows: 2rem;
+}
+
+.portfolio-details b {
+    color: var(--first-color);
+}
+
+.service-card h3{
+    color: var(--title-color);
+}
+
+.service-card svg{
+    margin-bottom: 1.25rem;
+    fill: var(--first-color);  /* La propiedad fill se utiliza para establecer el color de relleno de las partes rellenables de un elemento SVG, como los trazos o las áreas delimitadas por trazos.*/
+}
+
+.social-media a{
+    padding: 0.4rem;
+    text-decoration: none;
+}
+
+.social-media svg{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+@media screen and (min-width:768px){
+
+    .contact-cards{
+        display: grid;
+        grid-template-columns: repeat(2,48%);
+        justify-content: space-between;
+    }
+
+    .portfolio > .container{
+        display: grid;
+        grid-template-columns: repeat(2,50%);
+    }
+
+    .portfolio .section-title{
+        grid-column: span 2;
+    }
+
+
+    .portfolio-modal{
+        max-width: 800px;
+        flex-direction: row;
+    }
+
+    .portfolio-info{
+        margin-left: 1rem;
+        align-self: center;
+    }
+
+
+    .services > .container{
+        display: grid;
+        grid-template-columns: repeat(2,45%);
+        justify-content: space-between;
+        align-content: center;
+    }
+    .services .section-title{
+        grid-column: span 2;
+    }
+
+}
+
+@media screen and (min-width: 1024px){
+    .about{
+        display: grid;
+        grid-template-columns: repeat(3,30%);
+        justify-content: space-between;
+        align-content:center ;
+    }
+
+    .contact-cards{
+        grid-template-columns: repeat(4,24%);
+    }
+
+    .footer{
+        margin-bottom: 0;
+    }
+
+    .header{
+        position: sticky;
+        top:0;
+        padding: 0.5rem;
+        height: calc(var(--header-height) - 0.5rem)
+    }
+
+    .portfolio > .container{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+    }
+
+    .portfolio .section-title{
+        grid-column: span 3;
+    }
+
+    .services > .container{
+        
+        grid-template-columns: repeat(3,30%);
+    
+
+    }
+    .services .section-title{
+        grid-column: span 3;
+    }
+};
+    
