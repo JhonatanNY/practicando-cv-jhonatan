@@ -27,7 +27,7 @@
         $form.addEventListener("submit",(e) => {
             e.preventDefault();
             $loader.classList.remove("none");
-            fetch("https://formsubmit.co/ajax/1a82ce4f117893d685c99bae4fc078a8",{
+            fetch("https://formsubmit.co/ajax/jhonatanset.armando@gmail.com",{
                 method:"POST",
                 body:new FormData(e.target),
             })
@@ -37,7 +37,7 @@
                 location.hash = "#gracias";
                 $form.reset(); 
             })
-            .catch((err) => {
+            .catch((err) => {  
                 console.log(err);
                 let message = err.statusText || "Ocurrió un error al enviar, intenta nuevamente";
                 $response.querySelector("h3").innerHTML = `Error ${err.status}: ${message}`;

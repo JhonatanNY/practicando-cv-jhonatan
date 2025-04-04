@@ -87,10 +87,11 @@ p{
 .carousel{
     margin: 2rem auto;
     padding: 2rem 0;
-    max-width: 800px;
+    max-width: 300px;
     text-align: center;
-    overflow: hidden;
+    overflow-x: hidden; /* Ocultar cualquier desbordamiento en el eje X */
     background-color: var(--carousel-bg-color);
+    border-radius: 8px;
 }
 
 .carousel .slides{
@@ -102,12 +103,18 @@ p{
     transition: transform .5s ease-in-out;
 }
 .carousel .slides .slide{
-    background-color: blueviolet;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    width: 25%; /* Cada slide ocupa el 25% del carrusel */
+    text-align: center;
+    padding: 1rem;
       
 }
 
 .carousel input{
-   
+   display: none;
 }
 
 .carousel label{
@@ -213,6 +220,17 @@ p{
 }
 
 @media screen and (min-width:1024px) {
+
+    .carousel{
+        margin: 2rem auto;
+        padding: 2rem 0;
+        max-width: 800px;
+        text-align: center;
+        overflow-x: hidden; 
+        background-color: var(--carousel-bg-color);
+        border-radius: 8px;
+    }
+
     .contact-form{
         display: grid;
         grid-template-columns: repeat(2,1fr) ;
@@ -439,7 +457,7 @@ progress::-moz-progress-bar{
 }
 
 .gray-scale{
-    filter: grayscale(1);   /*La propiedad filter en CSS se utiliza para aplicar efectos visuales a un elemento, y grayscale(1) es un valor específico de filter que convierte la imagen o elemento a escala de grises. El valor 1 indica que se debe aplicar la máxima cantidad de escala de grises.*/
+    filter: grayscale(0);   /*La propiedad filter en CSS se utiliza para aplicar efectos visuales a un elemento, y grayscale(1) es un valor específico de filter que convierte la imagen o elemento a escala de grises. El valor 1 indica que se debe aplicar la máxima cantidad de escala de grises.*/
 }
 
 .none{
@@ -641,7 +659,7 @@ progress::-moz-progress-bar{
     height: 1.5rem;
 }
 
-@media screen and (min-width:768px){
+@media screen and (min-width:768px){ /*min-width: Se aplica cuando el ancho de la pantalla es mayor o igual al valor especificado*/
 
     .contact-cards{
         display: grid;
