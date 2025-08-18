@@ -580,9 +580,8 @@ progress::-moz-progress-bar{
 
 .portfolio-card img{
     width: 100%;
-    aspect-ratio: 1 / 1;  /* Hace que siempre sea cuadrada */
     object-fit: cover;
-    
+    display: block;  
 }
 .service-card{
     margin: 1rem auto;
@@ -727,6 +726,7 @@ progress::-moz-progress-bar{
     .portfolio > .container{
         display: grid;
         grid-template-columns: repeat(3,1fr);
+         gap: 0;
     }
 
     .portfolio .section-title{
